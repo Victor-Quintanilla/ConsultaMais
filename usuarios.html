@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Visualizar Cadastros</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+    }
+
+    .btn-limpar {
+      margin-top: 20px;
+      background-color: #d9534f;
+    }
+
+    .btn-limpar:hover {
+      background-color: #c9302c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Usuários Cadastrados</h2>
+    <table id="tabelaUsuarios">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Usuário</th>
+          <th>Senha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Linhas serão inseridas via JS -->
+      </tbody>
+    </table>
+
+    <button class="btn-limpar" onclick="limparBanco()">🗑️ Limpar banco de dados</button>
+  </div>
+
+  <script>
+    const dbKey = "usuarios";
+    const tabela = document.querySelector("#tabelaUsuarios tbody");
+
+    function carregarUsuarios() {
+      const usuarios = JSON.parse(localStorage.getItem(dbKey)) || [];
+
+      tabela.innerHTML = "";
+
+      if (usuarios.length === 0) {
+        const row = tabela.insertRow();
+        const cell = row.insertCell();
+        cell.colSpan = 3;
+        cell.innerText = "Nenhum usuário cadastrado.";
+        return;
+      }
+
+      usuarios.forEach((usuario, index) => {
+        const row = tabela.insertRow();
+        row.insertCell(0).innerText = index + 1;
+        row.insertCell(1).innerText = usuario.user;
+        row.insertCell(2).innerText = usuario.pass;
+      });
+    }
+
+    function limparBanco() {
+      if (confirm("Tem certeza que deseja apagar todos os cadastros?")) {
+        localStorage.removeItem(dbKey);
+        carregarUsuarios();
+      }
+    }
+
+    carregarUsuarios();
+  </script>
+</body>
+</html>
