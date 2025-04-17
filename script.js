@@ -1,4 +1,3 @@
-// Simula o "banco de dados" local
 const dbKey = "usuarios";
 
 // CADASTRO
@@ -41,7 +40,6 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 
   if (match) {
     document.getElementById("loginMsg").innerText = "Login bem-sucedido!";
-    // Redirecionar ou desbloquear acesso
     setTimeout(() => {
       window.location.href = "home.html"; 
     }, 1000);
