@@ -1,0 +1,35 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Evento {
+  id          Int        @id @default(autoincrement())
+  titulo      String
+  tipo        String
+  data        String
+  descricao   String
+  responsavel String
+  feedbacks   Feedback[]
+}
+
+model Feedback {
+  id           Int     @id @default(autoincrement())
+  participante String
+  comentario   String
+  sentimento   String
+  dataEnvio    String
+  eventoId     Int
+  evento       Evento  @relation(fields: [eventoId], references: [id])
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  senha    String
+}

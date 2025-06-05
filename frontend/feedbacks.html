@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consulta+ | Feedbacks</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Feedbacks - Consulta+</h1>
+    <nav>
+      <a href="eventos.html">← Voltar para Eventos</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>Enviar Feedback</h2>
+      <form id="formFeedback">
+        <input type="text" id="participante" placeholder="Nome do participante" required />
+        <textarea id="comentario" placeholder="Comentário" required></textarea>
+
+        <select id="eventoId" required>
+          <option value="">Selecione o evento</option>
+        </select>
+
+        <select id="sentimento" required>
+          <option value="">Sentimento</option>
+          <option value="positivo">Positivo</option>
+          <option value="neutro">Neutro</option>
+          <option value="negativo">Negativo</option>
+        </select>
+
+        <button type="submit">Enviar Feedback</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Feedbacks Recebidos</h2>
+      <ul id="listaFeedbacks"></ul>
+    </section>
+  </main>
+
+  <script src="scripts/feedbacks.js"></script>
+</body>
+</html>

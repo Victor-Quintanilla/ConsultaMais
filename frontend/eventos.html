@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consulta+ | Eventos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Eventos - Consulta+</h1>
+    <nav>
+      <a href="index.html">Sair</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>Cadastrar Novo Evento</h2>
+      <form id="formEvento">
+        <input type="text" id="titulo" placeholder="Título" required />
+        <input type="text" id="tipo" placeholder="Tipo de Evento" required />
+        <input type="date" id="data" required />
+        <textarea id="descricao" placeholder="Descrição" required></textarea>
+        <input type="text" id="responsavel" placeholder="Responsável RH" required />
+        <button type="submit">Salvar Evento</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Eventos Cadastrados</h2>
+      <ul id="listaEventos"></ul>
+    </section>
+  </main>
+
+  <script src="scripts/eventos.js"></script>
+</body>
+</html>
