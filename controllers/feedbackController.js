@@ -31,6 +31,7 @@ async function buscarFeedbackPorId(req, res) {
     if (!feedback) return res.status(404).json({ erro: 'Feedback não encontrado.' });
     res.json(feedback);
   } catch (error) {
+    console.error('Erro ao buscar feedback por ID:', error);
     res.status(500).json({ erro: 'Erro ao buscar feedback.' });
   }
 }
@@ -44,6 +45,7 @@ async function criarFeedback(req, res) {
     });
     res.status(201).json(novoFeedback);
   } catch (error) {
+    console.error('Erro ao criar feedback:', error);
     res.status(500).json({ erro: 'Erro ao criar feedback.' });
   }
 }
@@ -59,6 +61,7 @@ async function atualizarFeedback(req, res) {
     });
     res.json(feedbackAtualizado);
   } catch (error) {
+    console.error('Erro ao atualizar feedback:', error);
     res.status(500).json({ erro: 'Erro ao atualizar feedback.' });
   }
 }
@@ -70,6 +73,7 @@ async function deletarFeedback(req, res) {
     await prisma.feedback.delete({ where: { id } });
     res.json({ mensagem: 'Feedback deletado com sucesso.' });
   } catch (error) {
+    console.error('Erro ao deletar feedback:', error);
     res.status(500).json({ erro: 'Erro ao deletar feedback.' });
   }
 }

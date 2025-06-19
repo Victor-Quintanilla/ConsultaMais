@@ -9,6 +9,7 @@ async function listarEventos(req, res) {
     });
     res.json(eventos);
   } catch (error) {
+    console.error('Erro ao buscar eventos:', error);
     res.status(500).json({ erro: 'Erro ao buscar eventos.' });
   }
 }
@@ -24,6 +25,7 @@ async function buscarEventoPorId(req, res) {
     if (!evento) return res.status(404).json({ erro: 'Evento não encontrado.' });
     res.json(evento);
   } catch (error) {
+    console.error('Erro ao buscar evento por ID:', error);
     res.status(500).json({ erro: 'Erro ao buscar evento.' });
   }
 }
@@ -37,6 +39,7 @@ async function criarEvento(req, res) {
     });
     res.status(201).json(novoEvento);
   } catch (error) {
+    console.error('Erro ao criar evento:', error);
     res.status(500).json({ erro: 'Erro ao criar evento.' });
   }
 }
@@ -52,6 +55,7 @@ async function atualizarEvento(req, res) {
     });
     res.json(eventoAtualizado);
   } catch (error) {
+    console.error('Erro ao atualizar evento:', error);
     res.status(500).json({ erro: 'Erro ao atualizar evento.' });
   }
 }
@@ -63,6 +67,7 @@ async function deletarEvento(req, res) {
     await prisma.evento.delete({ where: { id } });
     res.json({ mensagem: 'Evento deletado com sucesso.' });
   } catch (error) {
+    console.error('Erro ao deletar evento:', error);
     res.status(500).json({ erro: 'Erro ao deletar evento.' });
   }
 }
