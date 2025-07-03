@@ -9,7 +9,7 @@
     "start:backend": "node server.js",
     "start:frontend": "npx live-server frontend --port=5500 --browser=firefox",
     "prisma:studio": "npx prisma studio",
-    "start:ai-api": "cd ai-service && call .\\venv\\Scripts\\activate && python app.py"
+    "start:ai-api": "cd ai_service && call .\\venv\\Scripts\\activate && python app.py"
   },
   "keywords": [],
   "author": "",
