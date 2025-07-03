@@ -16,6 +16,7 @@ model Evento {
   descricao   String
   responsavel String
   feedbacks   Feedback[]
+  relatorios  Relatorio[]
 }
 
 model Feedback {
@@ -32,4 +33,13 @@ model User {
   id       Int    @id @default(autoincrement())
   email    String @unique
   senha    String
+}
+
+model Relatorio {
+  id           Int      @id @default(autoincrement())
+  titulo       String   
+  conteudo     String   
+  dataGeracao  DateTime @default(now()) 
+  eventoId     Int      
+  evento       Evento   @relation(fields: [eventoId], references: [id]) 
 }

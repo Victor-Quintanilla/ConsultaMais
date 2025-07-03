@@ -1,0 +1,9 @@
+-- CreateTable
+CREATE TABLE "Relatorio" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "titulo" TEXT NOT NULL,
+    "conteudo" TEXT NOT NULL,
+    "dataGeracao" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "eventoId" INTEGER NOT NULL,
+    CONSTRAINT "Relatorio_eventoId_fkey" FOREIGN KEY ("eventoId") REFERENCES "Evento" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
