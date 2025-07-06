@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consulta+ | Relatórios de IA</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .relatorio-container {
+      background-color: #333;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      color: #eee;
+    }
+    .relatorio-container h3, .relatorio-container h4 {
+      color: #a8dadc;
+    }
+    .relatorio-container pre {
+      white-space: pre-wrap; 
+      word-wrap: break-word; 
+      background-color: #222;
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px solid #555;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .relatorio-item button {
+        margin-left: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .relatorio-item button:hover {
+        background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Relatórios de IA - Consulta+</h1>
+    <nav>
+      <a href="eventos.html">← Voltar para Eventos</a> |
+      <a href="feedbacks.html">Ir para Feedbacks →</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>Gerar Novo Relatório de Evento</h2>
+      <form id="formGerarRelatorio">
+        <label for="eventoSelect">Selecione o Evento:</label>
+        <select id="eventoSelect" required>
+          <option value="">Carregando eventos...</option>
+        </select>
+        <button type="submit">Gerar Relatório</button>
+        <p id="mensagemGeracao" style="color: yellow;"></p>
+      </form>
+    </section>
+
+    <section>
+      <h2>Relatórios Gerados</h2>
+      <ul id="listaRelatorios">
+        <p>Nenhum relatório gerado ainda.</p>
+      </ul>
+    </section>
+
+    <section id="detalhesRelatorio" class="relatorio-container" style="display: none;">
+      <h3 id="tituloRelatorioDetalhe"></h3>
+      <pre id="conteudoRelatorioDetalhe"></pre>
+      <button onclick="fecharDetalhesRelatorio()">Fechar</button>
+    </section>
+  </main>
+
+  <script src="scripts/relatorios.js"></script>
+</body>
+</html>

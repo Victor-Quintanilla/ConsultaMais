@@ -34,7 +34,8 @@ async function gerarRelatorio(req, res) {
     }
 
     const iaResponse = await axios.post(IA_API_URL, {
-      feedbacks: feedbacksDoEvento
+      feedbacks: feedbacksDoEvento,
+      event_title: evento.titulo
     });
 
     const reportContent = iaResponse.data.report;
