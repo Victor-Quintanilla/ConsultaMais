@@ -3,6 +3,48 @@ const axios = require('axios');
 
 const IA_API_URL = 'http://127.0.0.1:5000/generate-report';
 
+async function listarRelatorios(req, res) {
+  try {
+    const relatorios = await prisma.relatorio.findMany({
+      include: { evento: { select: { titulo: true } } } // Inclui o título do evento 
+    });
+    res.json(relatorios);
+  } catch (error) {
+    console.error('Erro ao listar relatórios:', error);
+    res.status(500).json({ erro: 'Erro ao buscar relatórios.' });
+  }
+}
+
+async function buscarRelatorioPorId(req, res) {
+    const id = parseInt(req.params.id); // Pega o ID da URL
+    try {
+        const relatorio = await prisma.relatorio.findUnique({
+            where: { id }, // Busca pelo ID
+            include: { evento: { select: { titulo: true } } } // Inclui o título do evento
+        });
+        if (!relatorio) {
+            return res.status(404).json({ erro: 'Relatório não encontrado.' });
+        }
+        res.json(relatorio); // Retorna o relatório encontrado
+    } catch (error) {
+        console.error('Erro ao buscar relatório por ID:', error);
+        res.status(500).json({ erro: 'Erro ao buscar relatório.' });
+    }
+}
+
+
+async function deletarRelatorio(req, res) {
+    const id = parseInt(req.params.id);
+    try {
+        await prisma.relatorio.delete({ where: { id } });
+        res.json({ mensagem: 'Relatório deletado com sucesso.' });
+    } catch (error) {
+        console.error('Erro ao deletar relatório:', error);
+        res.status(500).json({ erro: 'Erro ao deletar relatório.' });
+    }
+}
+
+
 async function gerarRelatorio(req, res) {
   const { eventoId } = req.body;
 
@@ -64,5 +106,8 @@ async function gerarRelatorio(req, res) {
 }
 
 module.exports = {
-  gerarRelatorio
+  gerarRelatorio,
+  listarRelatorios,
+  deletarRelatorio,
+  buscarRelatorioPorId
 };
